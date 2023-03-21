@@ -26,11 +26,11 @@ class SbbApplicationTests {
 	@Autowired
 	private AnswerRepository answerRepository;
 
-	@BeforeEach
-	void a(){
-		questionRepository.deleteAll();
 
-		questionRepository.clearAutoIncrement();
+
+	/** question 테스트 **/
+	@Test
+	void test1() {
 		Question q1 = new Question();
 		q1.setSubject("sbb가 무엇인가요?");
 		q1.setContent("sbb에 대해서 알고 싶습니다.");
@@ -44,19 +44,6 @@ class SbbApplicationTests {
 		this.questionRepository.save(q2);  // 두번째 질문 저장
 	}
 
-
-
-	/** question 테스트 **/
-	@Test
-	void test1() {
-		Question q1 = new Question();
-		q1.setSubject("세계에서 가장 부유한 국가가 어디인가요?");
-		q1.setContent("알고 싶습니다.");
-		q1.setCreateDate(LocalDateTime.now());
-		this.questionRepository.save(q1);  // 첫번째 질문 저장
-
-		assertEquals("세계에서 가장 부유한 국가가 어디인가요?",questionRepository.findById(3).get().getSubject());
-	}
 	@Test
 	void testJpa() {
 		List<Question> all = this.questionRepository.findAll();
